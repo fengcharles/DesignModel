@@ -31,8 +31,16 @@ public class EditDistance {
         char [] oa = orign.toCharArray();
         char [] ta = target.toCharArray();
 
-        if (oa.length == 0 || ta.length == 0){
+        if (oa.length == 0 && ta.length == 0){
             return 0;
+        }
+
+        if (oa.length == 0){
+            return 1;
+        }
+
+        if (ta.length == 0){
+            return 1;
         }
 
         for (int i = 0; i < oa.length+1; i++) {
@@ -87,12 +95,16 @@ public class EditDistance {
     }
 
     public static void main(String[] args) {
-        String sailn = "sdfs";
-        String failing = "sdfsadf";
+        String sailn = "1";
+        String failing = "23";
         int dp = dp(sailn, failing);
 
         //相似度计算最后一步
-        float result = 1 - ((float)dp / Math.max(sailn.length(), failing.length()));
+        float result = 1;
+        int maxLength = Math.max(sailn.length(), failing.length());
+        if (maxLength!=0){
+            result = 1 - ((float)dp / maxLength);
+        }
         System.out.println("两个字符串之间的相似度为:" + result);
     }
 }
