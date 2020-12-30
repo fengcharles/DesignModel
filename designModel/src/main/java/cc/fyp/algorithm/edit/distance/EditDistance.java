@@ -18,6 +18,12 @@ import java.util.Arrays;
 public class EditDistance {
 
 
+    /**
+     * 算法的主要实现
+     * @param orign
+     * @param target
+     * @return
+     */
     private  static  int dp(String orign,String target){
 
         //构造数组
@@ -25,6 +31,9 @@ public class EditDistance {
         char [] oa = orign.toCharArray();
         char [] ta = target.toCharArray();
 
+        if (oa.length == 0 || ta.length == 0){
+            return 0;
+        }
 
         for (int i = 0; i < oa.length+1; i++) {
             for (int j = 0; j < ta.length+1; j++) {
@@ -56,10 +65,15 @@ public class EditDistance {
         System.out.println("编辑矩阵为：");
         printArrays(table);
 
-        System.out.println("编辑距离最小是：" + table[orign.length()][target.length()]);
-        return 0;
+        int redata = table[orign.length()][target.length()];
+        System.out.println("编辑距离最小是：" + redata);
+        return redata;
     }
 
+    /**
+     * 打印二维数组细节
+     * @param table
+     */
     private static void printArrays(int [][] table){
 
         for (int i = 0; i < table.length; i++) {
@@ -73,6 +87,12 @@ public class EditDistance {
     }
 
     public static void main(String[] args) {
-        dp("sailn","failing");
+        String sailn = "sdfs";
+        String failing = "sdfsadf";
+        int dp = dp(sailn, failing);
+
+        //相似度计算最后一步
+        float result = 1 - ((float)dp / Math.max(sailn.length(), failing.length()));
+        System.out.println("两个字符串之间的相似度为:" + result);
     }
 }
