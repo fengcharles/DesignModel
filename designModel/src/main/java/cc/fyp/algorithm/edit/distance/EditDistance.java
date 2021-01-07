@@ -94,17 +94,30 @@ public class EditDistance {
         }
     }
 
-    public static void main(String[] args) {
-        String sailn = "1";
-        String failing = "23";
-        int dp = dp(sailn, failing);
 
-        //相似度计算最后一步
+    /**
+     * 相似度计算
+     * @param dp
+     * @param word1
+     * @param word2
+     * @return
+     */
+    private static float similar(int dp,String word1,String word2){
+
         float result = 1;
-        int maxLength = Math.max(sailn.length(), failing.length());
+        int maxLength = Math.max(word1.length(), word2.length());
         if (maxLength!=0){
             result = 1 - ((float)dp / maxLength);
         }
-        System.out.println("两个字符串之间的相似度为:" + result);
+        return  result;
+    }
+
+    public static void main(String[] args) {
+        String word1 = "11231";
+        String word2 = "11";
+        int dp = dp(word1, word2);
+
+        float resualt = similar(dp, word1, word2);
+        System.out.println("两个字符串之间的相似度为:" + resualt);
     }
 }
