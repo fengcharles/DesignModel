@@ -30,10 +30,6 @@ public class PermutationCombinationLeetCode2 {
             sb.append(words[i]);
         }
 
-        //匹配串长度
-        Integer allWordLength = sb.length();
-        //原始字符串的长度
-        Integer sLength = s.length();
         //每个单词的长度
         wordLength = words[0].length();
 
@@ -55,7 +51,7 @@ public class PermutationCombinationLeetCode2 {
             }
 
             boolean loops = loops(0, wordLength, marchString, words);
-            if (loops == true){
+            if (loops){
                 reData.add(i);
             }
         }
